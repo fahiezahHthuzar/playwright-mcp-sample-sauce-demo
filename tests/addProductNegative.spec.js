@@ -6,10 +6,14 @@ import { users } from '../test-data/users';
 
 test('Negative scenario - Cannot add product without login', async ({ page }) => {
     // Try to access products page without logging in
-    await page.goto('https://www.saucedemo.com/inventory.html');
+    await page.goto('https://www.saucedemo.com/inventory.html', { waitUntil: 'domcontentloaded' });
 
     // Should be redirected to login page
-    await expect(page).toHaveURL(/.*login/);
+    await expect(page).toHaveURL(/.*\//);
+    
+    // Verify we're on login page by checking for login elements
+    const loginButton = page.locator('#login-button');
+    await expect(loginButton).toBeVisible();
     console.log('User redirected to login page - cannot access products without authentication');
 });
 
@@ -82,10 +86,14 @@ test('Negative scenario - Verify cart persists after logout and login', async ({
     await logoutButton.click();
     console.log('Logged out');
 
-    // Verify logged out
-    await expect(page).toHaveURL(/.*login/);
+    // Verify logged out - user is redirected to home page after logout
+    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    
+    // Wait for page to fully load
+    await page.waitForLoadState('domcontentloaded');
 
-    // Login again
+    // Login again - navigate to login page
+    await loginPage.goto();
     await loginPage.login(users.standard.username, users.standard.password);
     await productsPage.verifyLoaded();
 
