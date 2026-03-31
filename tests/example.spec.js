@@ -8,12 +8,16 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.only('dialog validation', async ({ page }) => {
+  await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+  await page.locator('#confirmbtn').click();
+  await page.on('dialog',dialog => dialog.accept());
+  page.pause()
+  await page.locator("#mousehover").hover();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  const framePage = page.frameLocator("#courses-iframe");
+  await framePage.locator("li a[href*='lifetime-access']:visible").click();
+ 
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+
 });
