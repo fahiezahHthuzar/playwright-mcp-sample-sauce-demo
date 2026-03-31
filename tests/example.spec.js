@@ -8,7 +8,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test.only('dialog validation', async ({ page }) => {
+test('dialog validation', async ({ page }) => {
   await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
   await page.locator('#confirmbtn').click();
   await page.on('dialog',dialog => dialog.accept());
@@ -17,7 +17,6 @@ test.only('dialog validation', async ({ page }) => {
 
   const framePage = page.frameLocator("#courses-iframe");
   await framePage.locator("li a[href*='lifetime-access']:visible").click();
- 
 
 
 });
