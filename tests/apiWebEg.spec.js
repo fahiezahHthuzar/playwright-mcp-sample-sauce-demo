@@ -1,5 +1,5 @@
 import { test, expect, request } from '@playwright/test';
-import { ApiUtils } from '../utils/apiUtils';
+import { ApiUtils } from '../utils/ApiUtils';
 
 const loginPayload = { userEmail: "fahiezah21@gmail.com", userPassword: "tester@123" };// js object
 const orderPayload = {orders:
