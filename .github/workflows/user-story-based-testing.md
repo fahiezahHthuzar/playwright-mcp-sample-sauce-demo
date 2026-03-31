@@ -4,7 +4,7 @@ description: Validate user-story issues by executing acceptance criteria in a br
 
 on:
   issues:
-    types: [opened, edited, labeled]
+    types: [edited, labeled]
   roles: all
 
 permissions:

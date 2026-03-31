@@ -23,13 +23,12 @@
 #
 # Validate user-story issues by executing acceptance criteria in a browser and report structured pass/fail results with evidence.
 #
-# gh-aw-metadata: {"schema_version":"v2","frontmatter_hash":"6503caf16abab31a997a0d7a9d2bc65739f18f53b2e22e1d669d0acc97d4aba4","compiler_version":"v0.59.0","strict":true}
+# gh-aw-metadata: {"schema_version":"v2","frontmatter_hash":"6f5e2f959e3ab509602c35ce2616050edba97c5d6a53d1db46338a057fa60515","compiler_version":"v0.59.0","strict":true}
 
 name: "User Story Based Testing"
 "on":
   issues:
     types:
-    - opened
     - edited
     - labeled
   # roles: all # Roles processed as role check in pre-activation job
