@@ -20,6 +20,11 @@ tools:
 safe-outputs:
   add-comment:
     max: 2
+  upload-asset:
+    branch: "assets/user-story-testing"
+    max-size: 5120
+    allowed-exts: [.png, .jpg, .jpeg, .md]
+    max: 30
   noop:
     max: 1
 
@@ -88,6 +93,8 @@ Artifact path requirements:
 - Use a run-scoped directory under `/tmp/gh-aw/agent/user-story-testing/`.
 - Do not use hardcoded paths like `/app/`.
 - Use meaningful screenshot names (examples: `login-success.png`, `checkout-failure.png`).
+- After creating each screenshot and the final markdown report, call `upload_asset` so they are published and accessible.
+- Include the returned asset URLs in the final issue comment.
 
 Create a structured markdown report file at:
 - `/tmp/gh-aw/agent/user-story-testing/test-report.md`
@@ -105,7 +112,7 @@ Post exactly one final issue comment with:
 - Overall status: ✅ PASS or ❌ FAIL
 - Summary counts (total/passed/failed)
 - Per-criterion results and short diagnostics
-- Reference to generated evidence files
+- Direct links to uploaded screenshots and report assets (from `upload_asset` output)
 - Link to this run for artifact access:
 	- `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`
 
